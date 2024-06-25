@@ -172,7 +172,7 @@ st.write("")
 st.markdown(
     """
     <div style="text-align: center;">
-        Ravid Dimant | Alona Zafrif | Tal Shalom | Veronika Sorochenkova | Daniel Niazov
+        Ravid Dimant | Alona Zafrir | Tal Shalom | Veronika Sorochenkova | Daniel Niazov
     </div>
     """,
     unsafe_allow_html=True
