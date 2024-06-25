@@ -1,19 +1,3 @@
-"""
-
-
-    PLEASE NOTE:
-
-    This is an interactive web app created with StreamLit.
-
-    It's hosted on Heroku here:
-    https://hate-speech-predictor.herokuapp.com/
-
-    If you use any of this code, please credit with a link to my website:
-    https://www.sidneykung.com/
-
-
-"""
-
 # importing relevant python packages
 import streamlit as st
 import pandas as pd
@@ -24,7 +8,6 @@ from PIL import Image
 import re
 import string
 import nltk
-nltk.download('all')
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import CountVectorizer
@@ -46,6 +29,7 @@ contact = st.container()
 with site_header:
     st.title('Twitter Hate Speech Detection')
     st.subheader("Responsible AI, Law, Ethics & Society - Group 4")
+    st.sidebar.image(Image.open('visualizations/GroupLogo.png'), width=250)
     st.write("""
 
     This project aims to **automate content moderation** to identify hate speech using **machine learning binary classification algorithms.** 
@@ -54,11 +38,14 @@ with site_header:
 
     Check out the project repository [here](https://github.com/RavidDimant/twitter_hate_speech_detection/tree/master).
     
-    Cloned from the work by [Sidney Kung](https://www.sidneykung.com/)
+    Cloned the work by [Sidney Kung](https://www.sidneykung.com/)
     """)
 
 with business_context:
     st.header('The Problem of Content Moderation')
+    st.sidebar.markdown("[The Problem of Content Moderation]("
+                        "https://twitterhatespeechdetection-4fpbqbun8f3yyj7yzravid.streamlit.app/~/+/#the-problem-of"
+                        "-content-moderation)")
     st.write("""
 
     **Human content moderation exploits people by consistently traumatizing and underpaying them.** In 2019, an [article](https://www.theverge.com/2019/6/19/18681845/facebook-moderator-interviews-video-trauma-ptsd-cognizant-tampa) on The Verge exposed the extensive list of horrific working conditions that employees faced at Cognizant, which was Facebook’s primary moderation contractor. Unfortunately, **every major tech company**, including **Twitter**, uses human moderators to some extent, both domestically and overseas.
@@ -85,6 +72,8 @@ with performance:
     description, conf_matrix = st.columns(2)
     with description:
         st.header('Final Model Performance')
+        st.sidebar.markdown("[Final Model Performance](https://twitterhatespeechdetection-4fpbqbun8f3yyj7yzravid"
+                            ".streamlit.app/~/+/#final-model-performance)")
         st.write("""
         These scores are indicative of the two major roadblocks of the project:
         - The massive class imbalance of the dataset
@@ -95,8 +84,11 @@ with performance:
 
 with tweet_input:
     st.header('Is Your Tweet Considered Hate Speech?')
+    st.sidebar.markdown("[Try it yourself!](https://twitterhatespeechdetection-4fpbqbun8f3yyj7yzravid.streamlit.app"
+                        "/~/+/#is-your-tweet-considered-hate-speech)")
     st.write(
-        """*Please note that this prediction is based on how the model was trained, so it may not be an accurate representation.*""")
+        """*Please note that this prediction is based on how the model was trained, so it may not be an accurate 
+        representation.*""")
     # user input here
     user_text = st.text_input('Enter Tweet', max_chars=280)  # setting input as user_text
 
@@ -173,5 +165,17 @@ with sentiment_analysis:
             sentiment_graph = pd.DataFrame.from_dict(sentiment_dict, orient='index').drop(['compound'])
             st.bar_chart(sentiment_graph)
 
+st.write("")
+st.write("")
+st.write("")
+st.write("")
+st.markdown(
+    """
+    <div style="text-align: center;">
+        Ravid Dimant | Alona Zafrif | Tal Shalom | Veronika Sorochenkova | Daniel Niazov
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 # **Check out the project repository [here](https://github.com/RavidDimant/twitter_hate_speech_detection/tree/master).**
-# [LinkedIn](https://www.linkedin.com/in/sidneykung/) | [Github](https://github.com/sidneykung)
+# [LinkedIn](www.linkedin.com/in/ravid-dimant-48599224a) | [Github](https://github.com/RavidDimant)
