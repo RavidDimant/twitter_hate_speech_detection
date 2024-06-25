@@ -24,7 +24,7 @@ from PIL import Image
 import re
 import string
 import nltk
-nltk.download('stopwords')
+nltk.download('all')
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import CountVectorizer
