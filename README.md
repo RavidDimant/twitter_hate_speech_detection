@@ -120,7 +120,7 @@ Ultimately, automating hate speech detection is an extremely difficult task beca
 
 ## Final Model Deployment
 
-An **interactive version** of the final model is hosted on Heroku. Check it out [here](https://hate-speech-predictor.herokuapp.com/)!
+An **interactive version** of the final model is hosted on Heroku. Check it out [here]([https://hate-speech-predictor.herokuapp.com/](https://twitterhatespeechdetection-4fpbqbun8f3yyj7yzravid.streamlit.app/))!
 
 ![demo](./visualizations/model_demo.gif)
 
