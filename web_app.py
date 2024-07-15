@@ -58,7 +58,7 @@ with site_header:
 
 with business_context:
     st.header('The Problem of Content Moderation')
-    st.sidebar.markdown("[The Problem of Content Moderation](https://hatespeechdetection-fkbzq5w4mmyk9m3bgjdc5l-ravid"
+    st.sidebar.markdown("[The Problem of Content Moderation](https://hatespeechdetection-fkbzq5w4mmyk9m3bgjdc6l-ravid"
                         ".streamlit.app/#the-problem-of-content-moderation)")
     st.write("""
 
@@ -86,7 +86,7 @@ with performance:
     description, conf_matrix = st.columns(2)
     with description:
         st.header('Final Model Performance')
-        st.sidebar.markdown("[Final Model Performance](https://hatespeechdetection-fkbzq5w4mmyk9m3bgjdc5l-ravid"
+        st.sidebar.markdown("[Final Model Performance](https://hatespeechdetection-fkbzq5w4mmyk9m3bgjdc6l-ravid"
                             ".streamlit.app/#final-model-performance)")
         st.write("""
         These scores are indicative of the two major roadblocks of the project:
@@ -98,7 +98,7 @@ with performance:
 
 with tweet_input:
     st.header('Is Your Text Considered Hate Speech?')
-    st.sidebar.markdown("[Try it yourself!](https://hatespeechdetection-fkbzq5w4mmyk9m3bgjdc5l-ravid.streamlit.app"
+    st.sidebar.markdown("[Try it yourself!](https://hatespeechdetection-fkbzq5w4mmyk9m3bgjdc6l-ravid.streamlit.app"
                         "/#is-your-text-considered-hate-speech)")
     st.write(
         """*Please note that this prediction is based on how the model was trained, so it may not be an accurate 
@@ -184,7 +184,7 @@ with sentiment_analysis:
 with feedbacks:
     st.markdown("<br><br><br>", unsafe_allow_html=True)
     st.subheader("Feedback on Classification Results")
-    st.sidebar.markdown("[Give us feedback](https://hatespeechdetection-fkbzq5w4mmyk9m3bgjdc5l-ravid.streamlit.app"
+    st.sidebar.markdown("[Give us feedback](https://hatespeechdetection-fkbzq5w4mmyk9m3bgjdc6l-ravid.streamlit.app"
                         "/#feedback-on-classification-results)")
     st.write("Think our model was wrong in classifying your text? Let us know!")
     st.write("Write your text to be classified here and explain why you think it was wrong:")
