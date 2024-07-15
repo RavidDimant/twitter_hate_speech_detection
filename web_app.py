@@ -87,7 +87,7 @@ with performance:
     with description:
         st.header('Final Model Performance')
         st.sidebar.markdown("[Final Model Performance](https://hatespeechdetection-fkbzq5w4mmyk9m3bgjdc5l-ravid"
-                            ".streamlit.app/#the-problem-of-content-moderation)")
+                            ".streamlit.app/#final-model-performance)")
         st.write("""
         These scores are indicative of the two major roadblocks of the project:
         - The massive class imbalance of the dataset
@@ -98,8 +98,8 @@ with performance:
 
 with tweet_input:
     st.header('Is Your Text Considered Hate Speech?')
-    st.sidebar.markdown("[Try it yourself!](https://twitterhatespeechdetection-4fpbqbun8f3yyj7yzravid.streamlit.app"
-                        "/~/+/#is-your-tweet-considered-hate-speech)")
+    st.sidebar.markdown("[Try it yourself!](https://hatespeechdetection-fkbzq5w4mmyk9m3bgjdc5l-ravid.streamlit.app"
+                        "/#is-your-text-considered-hate-speech)")
     st.write(
         """*Please note that this prediction is based on how the model was trained, so it may not be an accurate 
         representation.*""")
