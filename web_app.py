@@ -104,43 +104,44 @@ with tweet_input:
         """*Please note that this prediction is based on how the model was trained, so it may not be an accurate 
         representation.*""")
     # user input here
-    user_text = st.text_input('Enter Tweet', max_chars=280)  # setting input as user_text
+    user_text = st.text_input('Enter Text', max_chars=280)  # setting input as user_text
 
 with model_results:
-    st.subheader('Prediction:')
-    if user_text:
-        # processing user_text
-        # removing punctuation
-        user_text = re.sub('[%s]' % re.escape(string.punctuation), '', user_text)
-        # tokenizing
-        stop_words = list(stopwords.words('english'))
-        tokens = nltk.word_tokenize(user_text)
-        # removing stop words
-        stopwords_removed = [token.lower() for token in tokens if token.lower() not in stop_words]
-        # taking root word
-        lemmatizer = WordNetLemmatizer()
-        lemmatized_output = []
-        for word in stopwords_removed:
-            lemmatized_output.append(lemmatizer.lemmatize(word))
+    if st.button("Submit"):
+        st.subheader('Prediction:')
+        if user_text:
+            # processing user_text
+            # removing punctuation
+            user_text = re.sub('[%s]' % re.escape(string.punctuation), '', user_text)
+            # tokenizing
+            stop_words = list(stopwords.words('english'))
+            tokens = nltk.word_tokenize(user_text)
+            # removing stop words
+            stopwords_removed = [token.lower() for token in tokens if token.lower() not in stop_words]
+            # taking root word
+            lemmatizer = WordNetLemmatizer()
+            lemmatized_output = []
+            for word in stopwords_removed:
+                lemmatized_output.append(lemmatizer.lemmatize(word))
 
-        # instantiating count vectorizor
-        count = CountVectorizer(stop_words=stop_words)
-        X_train = pickle.load(open('pickle/X_train_2.pkl', 'rb'))
-        X_test = lemmatized_output
-        X_train_count = count.fit_transform(X_train)
-        X_test_count = count.transform(X_test)
+            # instantiating count vectorizor
+            count = CountVectorizer(stop_words=stop_words)
+            X_train = pickle.load(open('pickle/X_train_2.pkl', 'rb'))
+            X_test = lemmatized_output
+            X_train_count = count.fit_transform(X_train)
+            X_test_count = count.transform(X_test)
 
-        # loading in model
-        final_model = pickle.load(open('pickle/final_log_reg_count_model.pkl', 'rb'))
+            # loading in model
+            final_model = pickle.load(open('pickle/final_log_reg_count_model.pkl', 'rb'))
 
-        # apply model to make predictions
-        prediction = final_model.predict(X_test_count[0])
+            # apply model to make predictions
+            prediction = final_model.predict(X_test_count[0])
 
-        if prediction == 0:
-            st.subheader('**Not Hate Speech**')
-        else:
-            st.subheader('**Hate Speech**')
-        st.text('')
+            if prediction == 0:
+                st.subheader('**Not Hate Speech**')
+            else:
+                st.subheader('**Hate Speech**')
+            st.text('')
 
 with sentiment_analysis:
     if user_text:
@@ -210,4 +211,3 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-
