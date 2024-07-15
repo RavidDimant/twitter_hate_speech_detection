@@ -15,6 +15,9 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn import svm
 # sentiment analysis
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('stopwords')
 
 st.set_page_config(page_title="Responsible AI Course", layout="centered")
 # Centered text at the top of the page
@@ -55,9 +58,8 @@ with site_header:
 
 with business_context:
     st.header('The Problem of Content Moderation')
-    st.sidebar.markdown("[The Problem of Content Moderation]("
-                        "https://twitterhatespeechdetection-4fpbqbun8f3yyj7yzravid.streamlit.app/~/+/#the-problem-of"
-                        "-content-moderation)")
+    st.sidebar.markdown("[The Problem of Content Moderation](https://hatespeechdetection-fkbzq5w4mmyk9m3bgjdc5l-ravid"
+                        ".streamlit.app/#the-problem-of-content-moderation)")
     st.write("""
 
     **Human content moderation exploits people by consistently traumatizing and underpaying them.** In 2019, an [article](https://www.theverge.com/2019/6/19/18681845/facebook-moderator-interviews-video-trauma-ptsd-cognizant-tampa) on The Verge exposed the extensive list of horrific working conditions that employees faced at Cognizant, which was Facebook’s primary moderation contractor. Unfortunately, **every major tech company**, uses human moderators to some extent, both domestically and overseas.
@@ -84,8 +86,8 @@ with performance:
     description, conf_matrix = st.columns(2)
     with description:
         st.header('Final Model Performance')
-        st.sidebar.markdown("[Final Model Performance](https://twitterhatespeechdetection-4fpbqbun8f3yyj7yzravid"
-                            ".streamlit.app/~/+/#final-model-performance)")
+        st.sidebar.markdown("[Final Model Performance](https://hatespeechdetection-fkbzq5w4mmyk9m3bgjdc5l-ravid"
+                            ".streamlit.app/#the-problem-of-content-moderation)")
         st.write("""
         These scores are indicative of the two major roadblocks of the project:
         - The massive class imbalance of the dataset
@@ -181,7 +183,8 @@ with sentiment_analysis:
 with feedbacks:
     st.markdown("<br><br><br>", unsafe_allow_html=True)
     st.subheader("Feedback on Classification Results")
-    st.sidebar.markdown("[Give us feedback](http://localhost:8501/#feedback-on-classification-results)")
+    st.sidebar.markdown("[Give us feedback](https://hatespeechdetection-fkbzq5w4mmyk9m3bgjdc5l-ravid.streamlit.app"
+                        "/#feedback-on-classification-results)")
     st.write("Think our model was wrong in classifying your text? Let us know!")
     st.write("Write your text to be classified here and explain why you think it was wrong:")
     # Text area for user input
