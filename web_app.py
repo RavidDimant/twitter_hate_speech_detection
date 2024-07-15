@@ -16,6 +16,17 @@ from sklearn import svm
 # sentiment analysis
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
+st.set_page_config(page_title="Responsible AI Course", layout="centered")
+# Centered text at the top of the page
+st.markdown(
+    """
+    <div style="text-align: center; font-size:20px; margin-top: 0; padding-top: 0;">
+        <b>Responsible AI, Law, Ethics & Society Course</b>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
 # creating page sections
 site_header = st.container()
 business_context = st.container()
@@ -24,20 +35,21 @@ performance = st.container()
 tweet_input = st.container()
 model_results = st.container()
 sentiment_analysis = st.container()
+feedbacks = st.container()
 contact = st.container()
 
 with site_header:
-    st.title('Twitter Hate Speech Detection')
-    st.subheader("Responsible AI, Law, Ethics & Society - Group 4")
+    st.title('Hate Speech Detection')
+    st.subheader("By 'Legalytics Squad' - Group 4")
+    # st.header("Responsible AI, Law, Ethics & Society Course")
     st.sidebar.image(Image.open('visualizations/GroupLogo.png'), width=250)
     st.write("""
 
     This project aims to **automate content moderation** to identify hate speech using **machine learning binary classification algorithms.** 
 
-    Baseline models included Random Forest, Naive Bayes, Logistic Regression and Support Vector Machine (SVM). The final model was a **Logistic Regression** model that used Count Vectorization for feature engineering. It produced an F1 of 0.3958 and Recall (TPR) of 0.624.  
+    The final model was a **Logistic Regression** model that used Count Vectorization for feature engineering. It produced an F1 of 0.3958 and Recall (TPR) of 0.624.  
 
     Check out the project repository [here](https://github.com/RavidDimant/twitter_hate_speech_detection/tree/master).
-    
     Cloned the work by [Sidney Kung](https://www.sidneykung.com/)
     """)
 
@@ -48,7 +60,7 @@ with business_context:
                         "-content-moderation)")
     st.write("""
 
-    **Human content moderation exploits people by consistently traumatizing and underpaying them.** In 2019, an [article](https://www.theverge.com/2019/6/19/18681845/facebook-moderator-interviews-video-trauma-ptsd-cognizant-tampa) on The Verge exposed the extensive list of horrific working conditions that employees faced at Cognizant, which was Facebook’s primary moderation contractor. Unfortunately, **every major tech company**, including **Twitter**, uses human moderators to some extent, both domestically and overseas.
+    **Human content moderation exploits people by consistently traumatizing and underpaying them.** In 2019, an [article](https://www.theverge.com/2019/6/19/18681845/facebook-moderator-interviews-video-trauma-ptsd-cognizant-tampa) on The Verge exposed the extensive list of horrific working conditions that employees faced at Cognizant, which was Facebook’s primary moderation contractor. Unfortunately, **every major tech company**, uses human moderators to some extent, both domestically and overseas.
 
     Hate speech is defined as **abusive or threatening speech that expresses prejudice against a particular group, especially on the basis of race, religion or sexual orientation.**  Usually, the difference between hate speech and offensive language comes down to subtle context or diction.
 
@@ -61,9 +73,9 @@ with data_desc:
         st.write("""
         The **data** for this project was sourced from a Cornell University [study](https://github.com/t-davidson/hate-speech-and-offensive-language) titled *Automated Hate Speech Detection and the Problem of Offensive Language*.
 
-        The `.csv` file has **24,802 rows** where **6% of the tweets were labeled as "Hate Speech".**
+        The `.csv` file has **24,802 rows** where **6% of the texts were labeled as "Hate Speech".**
 
-        Each tweet's label was voted on by crowdsource and determined by majority rules.
+        Each text's label was voted on by crowdsource and determined by majority rules.
         """)
     with venn:
         st.image(Image.open('visualizations/word_venn.png'), width=400)
@@ -83,7 +95,7 @@ with performance:
         st.image(Image.open('visualizations/normalized_log_reg_countvec_matrix.png'), width=400)
 
 with tweet_input:
-    st.header('Is Your Tweet Considered Hate Speech?')
+    st.header('Is Your Text Considered Hate Speech?')
     st.sidebar.markdown("[Try it yourself!](https://twitterhatespeechdetection-4fpbqbun8f3yyj7yzravid.streamlit.app"
                         "/~/+/#is-your-tweet-considered-hate-speech)")
     st.write(
@@ -153,7 +165,7 @@ with sentiment_analysis:
         breakdown, graph = st.columns(2)
         with breakdown:
             # printing category
-            st.write("Your Tweet is rated as", category)
+            st.write("Your Text is rated as", category)
             # printing overall compound score
             st.write("**Compound Score**: ", sentiment_dict['compound'])
             # printing overall compound score
@@ -164,6 +176,24 @@ with sentiment_analysis:
         with graph:
             sentiment_graph = pd.DataFrame.from_dict(sentiment_dict, orient='index').drop(['compound'])
             st.bar_chart(sentiment_graph)
+
+
+with feedbacks:
+    st.markdown("<br><br><br>", unsafe_allow_html=True)
+    st.subheader("Feedback on Classification Results")
+    st.sidebar.markdown("[Give us feedback](http://localhost:8501/#feedback-on-classification-results)")
+    st.write("Think our model was wrong in classifying your text? Let us know!")
+    st.write("Write your text to be classified here and explain why you think it was wrong:")
+    # Text area for user input
+    user_text = st.text_area("Enter your text here")
+    # Additional text area for user explanation
+    user_explanation = st.text_area("Explain why you think the classification was wrong")
+    # Button to submit feedback
+    if st.button("Submit Feedback"):
+        if user_text and user_explanation:
+            st.success("Thank you for your feedback! We will review it ASAP.")
+        else:
+            st.warning("Please fill out both fields before submitting.")
 
 st.write("")
 st.write("")
@@ -177,5 +207,4 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-# **Check out the project repository [here](https://github.com/RavidDimant/twitter_hate_speech_detection/tree/master).**
-# [LinkedIn](www.linkedin.com/in/ravid-dimant-48599224a) | [Github](https://github.com/RavidDimant)
+
